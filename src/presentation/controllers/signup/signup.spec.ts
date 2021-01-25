@@ -1,8 +1,7 @@
 import { SignUpController } from './signup'
-import { EmailValidator } from '../protocols'
-import { ServerError, InvalidParamError, MissingParamError } from '../errors'
-import { AccountModel } from '../../domain/models/account'
-import { AddAccount, AddAccountModel } from '../../domain/usecases/add-account'
+import { EmailValidator, AccountModel, AddAccount, AddAccountModel } from './signup-protocols'
+import { ServerError, InvalidParamError, MissingParamError } from '../../errors'
+
 interface SutType {
   sut: SignUpController
   emailValidatorStub: EmailValidator
@@ -41,6 +40,7 @@ const makeAddAccount = (): AddAccount => {
   }
   return new AddAccountStub()
 }
+
 const makeSut = (): SutType => {
   const emailValidatorStub = makeEmailValidator()
   const addAccountStub = makeAddAccount()
@@ -51,6 +51,7 @@ const makeSut = (): SutType => {
     addAccountStub
   }
 }
+
 describe('SignUp Controller', () => {
   test('Should return 400 if no name is provided', () => {
     const { sut } = makeSut()
