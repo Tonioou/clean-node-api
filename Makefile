@@ -1,11 +1,11 @@
 
 .PHONY: test-ci-run
 test-ci-run:
-	npm run test-ci
+	npm run test:ci
 
 .PHONY: test-ci-teardown
 test-ci-teardown:
-	docker compose stop
+	docker compose -f docker/docker-compose.yaml stop
 
 .PHONY: test-ci-container
 test-ci-container:

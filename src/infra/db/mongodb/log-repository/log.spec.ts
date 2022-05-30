@@ -3,14 +3,14 @@ import { MongoHelper } from '../helpers/mongo-helper'
 import { LogMongoRepository } from './log'
 
 describe('Log Mongo Repository', () => {
-    let errorCollection: Collection
+  let errorCollection: Collection
   beforeEach(async () => {
     errorCollection = await MongoHelper.getCollection('errors')
-    await errorCollection.
-    deleteMany({})
+    await errorCollection.deleteMany({})
   })
   beforeAll(async () => {
-    await MongoHelper.connect(process.env.MONGO_URL as string)
+    const url = 'mongodb://root:example@localhost:27017'
+    await MongoHelper.connect(url as string)
   })
 
   afterAll(async () => {
@@ -18,9 +18,9 @@ describe('Log Mongo Repository', () => {
   })
 
   test('Should create an error log on success', async () => {
-   const sut = new LogMongoRepository()
-   await sut.logError('any_error')
-   const count = await errorCollection.countDocuments()
-   expect(count).toBe(1)
+    const sut = new LogMongoRepository()
+    await sut.logError('any_error')
+    const count = await errorCollection.countDocuments()
+    expect(count).toBe(1)
   })
 })

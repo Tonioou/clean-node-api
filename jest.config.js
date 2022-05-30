@@ -9,5 +9,6 @@ module.exports =
   },
   // since im using arch, and this lib won't work with it i will run a container instead
   // preset: '@shelf/jest-mongodb',
-  coveragePathIgnorePatterns: ['protocols']
+  coveragePathIgnorePatterns: ['protocols'],
+  setupFiles: ['<rootDir>/setTestEnvVars.js']
 }
