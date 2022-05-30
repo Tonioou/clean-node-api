@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+PATH := bin:$(PATH)
 
 .PHONY: test-ci-run
 test-ci-run:
@@ -12,5 +14,4 @@ test-ci-container:
 	docker compose -f docker/docker-compose.yaml up -d
 
 .PHONY: test-ci
-test-ci: test-ci-container test-ci-run test-ci-teardown
-	test-ci-container test-ci-run test-ci-teardown
+test-ci: test-ci-container 	test-ci-run test-ci-teardown
