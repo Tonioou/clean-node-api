@@ -7,6 +7,7 @@ module.exports =
   transform: {
     '.+\\.ts$': 'ts-jest'
   },
-  preset: '@shelf/jest-mongodb',
+  // since im using arch, and this lib won't work with it i will run a container instead
+  // preset: '@shelf/jest-mongodb',
   coveragePathIgnorePatterns: ['protocols']
 }
